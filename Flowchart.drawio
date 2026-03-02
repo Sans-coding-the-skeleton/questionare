@@ -1,0 +1,43 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:135.0) Gecko/20100101 Firefox/135.0" version="29.5.2">
+  <diagram name="Page-1" id="7nzK6AJ5EckQvoSGuodK">
+    <mxGraphModel dx="868" dy="458" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="QuXzdo5YISggwm3sFMDT-6" edge="1" parent="1" source="twQKY6fWS8KKAY0Aw222-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="QuXzdo5YISggwm3sFMDT-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QuXzdo5YISggwm3sFMDT-11" edge="1" parent="1" source="twQKY6fWS8KKAY0Aw222-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="QuXzdo5YISggwm3sFMDT-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="twQKY6fWS8KKAY0Aw222-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Show question" vertex="1">
+          <mxGeometry height="40" width="120" x="40" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="twQKY6fWS8KKAY0Aw222-3" edge="1" parent="1" source="twQKY6fWS8KKAY0Aw222-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="twQKY6fWS8KKAY0Aw222-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="twQKY6fWS8KKAY0Aw222-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Enter the page" vertex="1">
+          <mxGeometry height="80" width="120" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="QuXzdo5YISggwm3sFMDT-9" edge="1" parent="1" source="QuXzdo5YISggwm3sFMDT-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="QuXzdo5YISggwm3sFMDT-8" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QuXzdo5YISggwm3sFMDT-12" edge="1" parent="1" source="QuXzdo5YISggwm3sFMDT-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="QuXzdo5YISggwm3sFMDT-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QuXzdo5YISggwm3sFMDT-3" parent="1" style="whiteSpace=wrap;html=1;" value="Select answer" vertex="1">
+          <mxGeometry height="40" width="120" x="40" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="QuXzdo5YISggwm3sFMDT-13" edge="1" parent="1" source="QuXzdo5YISggwm3sFMDT-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="QuXzdo5YISggwm3sFMDT-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QuXzdo5YISggwm3sFMDT-8" parent="1" style="whiteSpace=wrap;html=1;" value="Send the answer" vertex="1">
+          <mxGeometry height="40" width="120" x="40" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="QuXzdo5YISggwm3sFMDT-10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;Show all answers&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="260" y="200" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

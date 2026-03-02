@@ -1,0 +1,73 @@
+
+#1 Analyzuj zadání
+Completion requirements
+
+V této kapitile postupně navrhneš, vytovříš, otestuješ a budeš provozovat jednoduchou webovou aplikaci pro hlasování. Zadání je
+Co budeme tvořit? 
+
+Anketu o jedné otázce s možností zobrazit výsledky a udělat reset. Navrhneš jednoduchou otázku, například "Kolik otevřených záložek je ještě normální?" a k ní možné odpovědí ve stylu a) b) c) ....  Téma otázky i možnosti odpovědí si zvolíš sám.Pak naprogramuješ webovou stránku, která bude anketu provozovat. Minimální rozsah: 1 otázka a alespoň 3 odpovědi.
+Funkční požadavky
+F1 Hlasování
+
+    Zobraz otázku a alespoň 3 možnosti odpovědi
+    Uživatel může vybrat jednu možnost
+    Po odeslání hlasu server uloží hlas a vrátí aktuální výsledky
+    Musí být možnost jen zobrazit výsledky a nehlasovat.
+
+F2 Zobrazení výsledků
+
+    Uživatel může zobrazit aktuální výsledky bez hlasování
+    Výsledky obsahují počet hlasů pro každou možnost
+    Data musí být sdílená mezi všemi uživateli
+    Po restartu stránky musí zůstat zachována
+
+F3 Reset hlasování
+
+    Aplikace musí obsahovat možnost resetu hlasů.
+    Reset je povolen pouze při zadání správného tokenu
+    Token je uložen na serveru
+    Pokud je token správný, všechny hlasy se vynulují
+    Pokud je token nesprávný, reset se neprovede
+    Token může být:
+        pevně nastavená hodnota v backendu
+        uložený v konfigurační proměnné
+
+Technické požadavky
+
+Aplikace musí komunikovat HTTP protokolem a výsledky ukazovat jako webovou HTML stránku. Data si může ukládat kam chce, ale musí to být sdílené pro všechny návštěvníky, například do souboru, do paměti aplikace.
+Co není povoleno
+
+    ukládání hlasů pouze do localStorage
+    ukládání hlasů pouze do proměnné v JavaScriptu
+    reset bez ověření tokenu
+
+
+
+#2 Vyber technologie
+Completion requirements
+
+U webových aplikací jsou technologie (technology stack) stěžejí. Aplikaci musíš skutečne provozovat. Takže nejprve vyber deployment technology stack. Tipy na free varianty podle různých jazyků jsou:
+PHP
+
+https://www.infinityfree.com/
+
+https://googiehost.com/ 
+Python
+
+https://www.pythonanywhere.com/
+
+https://render.com/ například podle https://render.com/docs/deploy-flask
+JavaScript (and Python)
+
+https://replit.com/
+Vlastní VPS
+
+https://www.oracle.com/cloud/free/ 
+
+Projsi si možnosti. Možná jsou i další možnosti technologií, hostingu nebo jiných VPS. Zeptej se třeba přátel, AI nebo si nastuduj vlastní. Pak vyber technology stack a to ti určí, jestli to budeš dělat v PHP nebo Pythonu, nebo v něčem jiném...
+
+
+Teď ta nejtežší část. Návrh. To co za Tebe dnes AI neudělá. Navrhni wireframe a deployment digram pomocí https://www.drawio.com/ (nebo jiného kreslítka). Pak navrhni strukturu souborů a složek (kde bude kód, kde konfigurace, kam logovat) a popiš si endpointy/url adresy, které použiješ. Vše spoj do jedné dokumentace, používá se k tomu README.md, ale klidně udělej dokument ve textovém editoru, nebo sadu PDF. Je to na Tobě.
+
+
+Zdrojový kód nasaď na web. Musí být veřejně přístupný. 

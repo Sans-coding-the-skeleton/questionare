@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Questionnaire – Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+
+<body>
+    <!-- ── Header ── -->
+    <header>
+        <div class="logo">
+            <div class="logo-icon">Q</div>
+            <span class="logo-text">Questionnaire</span>
+        </div>
+        <nav>
+            <a href="{{ url_for('index') }}" class="nav-link">Vote</a>
+            <a href="{{ url_for('results') }}" class="nav-link active">Results</a>
+        </nav>
+    </header>
+    <hr class="header-rule" />
+
+    <div class="container">
+        <!-- ── Flash messages ── -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <!-- ── Results card ── -->
+        <div class="card">
+            <div class="card-body">
+                <h1 class="question-text">{{ question }}</h1>
+                <p class="total-votes">Total votes: <strong>{{ total }}</strong></p>
+
+                <ul class="results-list">
+                    {% for answer, count, pct in results %}
+                    <li class="result-item">
+                        <div class="result-header">
+                            <span class="result-answer">{{ answer }}</span>
+                            <span class="result-count">{{ count }} vote{% if count != 1 %}s{% endif %} ({{ pct
+                                }}%)</span>
+                        </div>
+                        <div class="bar-track">
+                            <div class="bar-fill" style="width: {{ pct }}%;"></div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="btn-row">
+                    {% if already_voted %}
+                    <span class="voted-badge">✓ You voted</span>
+                    {% else %}
+                    <a href="{{ url_for('index') }}" class="btn btn-primary">Go Vote</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Reset card ── -->
+        <div class="card reset-card">
+            <div class="card-body">
+                <h2 class="reset-title">Admin Reset</h2>
+                <p class="reset-desc">Enter the secret token to reset all votes to zero.</p>
+                <form action="{{ url_for('reset') }}" method="post" class="reset-form">
+                    <input type="password" name="token" id="token" class="token-input" placeholder="Enter reset token…"
+                        required autocomplete="off" />
+                    <button type="submit" class="btn btn-danger">Reset Votes</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

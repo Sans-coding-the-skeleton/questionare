@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Questionnaire – Vote</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+
+<body>
+    <!-- ── Header ── -->
+    <header>
+        <div class="logo">
+            <div class="logo-icon">Q</div>
+            <span class="logo-text">Questionnaire</span>
+        </div>
+        <nav>
+            <a href="{{ url_for('index') }}" class="nav-link active">Vote</a>
+            <a href="{{ url_for('results') }}" class="nav-link">Results</a>
+        </nav>
+    </header>
+    <hr class="header-rule" />
+
+    <!-- ── Flash messages ── -->
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <!-- ── Main card ── -->
+        <div class="card">
+            <div class="card-body two-col">
+
+                <!-- Left column: question + form -->
+                <div class="col-left">
+                    <p class="question-type">Single-choice poll</p>
+                    <h1 class="question-text">{{ question }}</h1>
+
+                    <form action="{{ url_for('vote') }}" method="post" id="vote-form">
+                        <ul class="answer-list">
+                            {% for answer in answers %}
+                            <li class="answer-item">
+                                <label class="answer-label">
+                                    <input type="radio" name="answer" value="{{ answer }}" required />
+                                    <span class="answer-text">{{ answer }}</span>
+                                </label>
+                            </li>
+                            {% endfor %}
+                        </ul>
+
+                        <div class="btn-row">
+                            <button type="submit" class="btn btn-primary">Send Answer</button>
+                            <a href="{{ url_for('results') }}" class="btn btn-secondary">Show Results</a>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Right column: question-related image -->
+                <div class="col-right">
+                    <img src="{{ url_for('static', filename='multiple-browser-tabs-open-2418596165-1.png') }}"
+                        alt="Many browser tabs open" class="question-img" />
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
