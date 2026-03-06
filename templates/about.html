@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Questionnaire – O anketě</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+
+<body>
+    <!-- ── Header ── -->
+    <header>
+        <div class="logo">
+            <div class="logo-icon">Q</div>
+            <span class="logo-text">Questionnaire</span>
+        </div>
+        <nav>
+            <a href="{{ url_for('index') }}" class="nav-link">Vote</a>
+            <a href="{{ url_for('results') }}" class="nav-link">Results</a>
+            <a href="{{ url_for('about') }}" class="nav-link active">O anketě</a>
+        </nav>
+    </header>
+    <hr class="header-rule" />
+
+    <div class="container">
+
+        <!-- ── About card ── -->
+        <div class="card">
+            <div class="card-body">
+                <p class="question-type">O projektu</p>
+                <h1 class="question-text">O anketě</h1>
+
+                <div class="about-section">
+                    <h2 class="about-heading">Co tato anketa zjišťuje?</h2>
+                    <p class="about-text">
+                        Tato anketa se ptá jednoduché, ale zajímavé otázky: kolik otevřených karet v prohlížeči je
+                        ještě rozumné? Každý z nás má jiný styl práce – někdo přísně minimalistický, jiný s desítkami
+                        záložek. Cílem je zjistit, jaké jsou reálné zvyklosti uživatelů.
+                    </p>
+                </div>
+
+                <div class="about-section">
+                    <h2 class="about-heading">Pro koho je anketa určena?</h2>
+                    <p class="about-text">
+                        Anketa je otevřená pro kohokoli. Výsledky jsou veřejné a viditelné bez nutnosti hlasovat.
+                        Každý prohlížeč může hlasovat jednou – ochrana proti opakovanému hlasování je řešena
+                        serverovou session.
+                    </p>
+                </div>
+
+                <div class="about-section">
+                    <h2 class="about-heading">Technické informace</h2>
+                    <p class="about-text">
+                        Aplikace je napsána v Pythonu za použití frameworku Flask. Výsledky jsou ukládány do souboru
+                        <code class="inline-code">votes.json</code> na serveru. Projekt je nasazen na platformě
+                        PythonAnywhere a zdrojový kód je dostupný na GitHubu.
+                    </p>
+                </div>
+
+                <div class="about-section">
+                    <h2 class="about-heading">Jak nahlásit chybu?</h2>
+                    <p class="about-text">
+                        Pokud narazíte na jakoukoliv chybu – technickou, jazykovou nebo jinou – prosíme, nahlaste ji
+                        prostřednictvím GitHub Issues. Stačí kliknout na tlačítko níže, popsat problém a odeslat.
+                        Každé hlášení pomáhá aplikaci zlepšit.
+                    </p>
+                    <div class="btn-row" style="margin-top: 18px;">
+                        <a href="https://github.com/Sans-coding-the-skeleton/questionare/issues" target="_blank"
+                            rel="noopener noreferrer" class="btn btn-primary">
+                            🐛 Nahlásit chybu na GitHubu
+                        </a>
+                        <a href="{{ url_for('index') }}" class="btn btn-secondary">← Zpět na hlasování</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

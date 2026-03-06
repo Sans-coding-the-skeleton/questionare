@@ -369,6 +369,7 @@ input[type="radio"] {
 
 .bar-fill {
     height: 100%;
+    width: var(--w, 0%);
     background: linear-gradient(90deg, var(--accent), var(--accent-h));
     border-radius: 99px;
     transition: width .6s cubic-bezier(.4, 0, .2, 1);
@@ -432,4 +433,38 @@ input[type="radio"] {
 
 .token-input::placeholder {
     color: var(--text-muted);
+}
+
+/* ── About page ── */
+.about-section {
+    margin-bottom: 32px;
+}
+
+.about-section:last-child {
+    margin-bottom: 0;
+}
+
+.about-heading {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+}
+
+.about-text {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--text-muted);
+}
+
+.inline-code {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 1px 6px;
+    color: var(--accent-h);
 }

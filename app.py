@@ -117,6 +117,12 @@ def reset():
     return redirect(url_for("results"))
 
 
+@app.route("/about")
+def about():
+    """Show the About / O anketě page."""
+    return render_template("about.html")
+
+
 # ── Entry point ───────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":

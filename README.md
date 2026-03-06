@@ -36,7 +36,8 @@ questionare/
 ├── requirements.txt  # Python dependencies
 ├── templates/
 │   ├── index.html    # Voting page
-│   └── results.html  # Results + reset page
+│   ├── results.html  # Results + reset page
+│   └── about.html   # O anketě – About page
 ├── static/
 │   └── style.css     # Dark-theme styling
 ├── Wireframe.drawio  # UI wireframe
@@ -54,6 +55,7 @@ questionare/
 | `POST` | `/vote` | Submit a vote. Validates choice, saves to file, sets session flag. |
 | `GET`  | `/results` | Results page with vote counts and reset form. |
 | `POST` | `/reset` | Reset votes if the supplied token matches the server-side token. |
+| `GET`  | `/about` | About page (O anketě) – info about the survey and bug reporting link. |
 
 ---
 
@@ -93,6 +95,75 @@ python app.py
    ```
 5. Set environment variables `RESET_TOKEN` and `SECRET_KEY` in the **Web** tab.
 6. Reload the web app.
+
+---
+
+## Deploying Code Changes
+
+After the first deployment, follow these steps every time you make a change to the code.
+
+### Step 1 – Make and test changes locally
+
+```bash
+python app.py
+# Open http://127.0.0.1:5000 and verify the change works correctly
+```
+
+### Step 2 – Stage the changed files
+
+```bash
+git add <file>          # add a specific file, e.g. git add templates/about.html
+# OR
+git add .               # add all changed files at once
+```
+
+### Step 3 – Create a commit with a short description
+
+```bash
+git commit -m "Short description of what changed"
+# Example: git commit -m "Add O ankete About page and report-bug link"
+```
+
+> Use present-tense imperative messages: *Add …*, *Fix …*, *Update …*
+
+### Step 4 – Push to GitHub
+
+```bash
+git push origin main
+```
+
+> If your default branch is called `master`, use `git push origin master`.
+
+### Step 5 – Pull changes on PythonAnywhere
+
+1. In the PythonAnywhere dashboard, open a **Bash console**.
+2. Navigate to the project directory:
+   ```bash
+   cd ~/questionare
+   ```
+3. Pull the latest changes from GitHub:
+   ```bash
+   git pull origin main
+   ```
+4. If you added new Python packages, install them:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+### Step 6 – Reload the web app
+
+1. Go to the **Web** tab in the PythonAnywhere dashboard.
+2. Click the green **Reload** button.
+3. Open your live URL and confirm the change is visible.
+
+---
+
+### Quick reference – full flow
+
+```
+Edit code  →  python app.py (test locally)  →  git add .  →
+git commit -m "…"  →  git push  →  PythonAnywhere: git pull  →  Reload
+```
 
 ---
 
