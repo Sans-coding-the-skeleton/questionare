@@ -19,6 +19,16 @@ def set_security_headers(response):
     # we send both for maximum browser compatibility.
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["Content-Security-Policy"] = "frame-ancestors 'none'"
+
+    # HTTP Strict Transport Security (HSTS)
+    # Rollout schedule per https://hstspreload.org/:
+    #   Step 1 – 300 s   (5 min)   ← current, safe to test
+    #   Step 2 – 86 400 s (1 day)  once step 1 is confirmed working
+    #   Step 3 – 2 592 000 s (30 days)
+    #   Step 4 – 31 536 000 s (1 year) + includeSubDomains + preload
+    response.headers["Strict-Transport-Security"] = (
+        "max-age=300"
+    )
     return response
 
 
