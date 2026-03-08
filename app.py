@@ -9,6 +9,19 @@ app = Flask(__name__)
 app.secret_key = config.SECRET_KEY
 
 
+# ── Security headers ──────────────────────────────────────────────────────────
+
+@app.after_request
+def set_security_headers(response):
+    """Add security headers to every response."""
+    # Prevent the app from being embedded in a frame/iframe.
+    # CSP frame-ancestors is the modern replacement for X-Frame-Options;
+    # we send both for maximum browser compatibility.
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["Content-Security-Policy"] = "frame-ancestors 'none'"
+    return response
+
+
 # ── Vote storage helpers ──────────────────────────────────────────────────────
 
 def _load_votes() -> dict:

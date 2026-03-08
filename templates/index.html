@@ -10,65 +10,76 @@
 
 <body>
     <!-- ── Header ── -->
-    <header>
-        <div class="logo">
-            <div class="logo-icon">Q</div>
+    <header role="banner">
+        <div class="logo" aria-label="Questionnaire logo">
+            <div class="logo-icon" role="img" aria-label="Q logo icon">Q</div>
             <span class="logo-text">Questionnaire</span>
         </div>
-        <nav>
-            <a href="{{ url_for('index') }}" class="nav-link active">Vote</a>
+        <nav aria-label="Main navigation">
+            <a href="{{ url_for('index') }}" class="nav-link active" aria-current="page">Vote</a>
             <a href="{{ url_for('results') }}" class="nav-link">Results</a>
             <a href="{{ url_for('about') }}" class="nav-link">O anketě</a>
         </nav>
     </header>
-    <hr class="header-rule" />
+    <hr class="header-rule" role="separator" />
 
     <!-- ── Flash messages ── -->
     <div class="container">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-        {% for category, message in messages %}
-        <div class="alert alert-{{ category }}">{{ message }}</div>
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
+        <div aria-live="polite" aria-atomic="true">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}" role="alert">{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
 
         <!-- ── Main card ── -->
-        <div class="card">
-            <div class="card-body two-col">
+        <main id="main-content">
+            <div class="card">
+                <div class="card-body two-col">
 
-                <!-- Left column: question + form -->
-                <div class="col-left">
-                    <p class="question-type">Single-choice poll</p>
-                    <h1 class="question-text">{{ question }}</h1>
+                    <!-- Left column: question + form -->
+                    <div class="col-left">
+                        <p class="question-type" aria-hidden="true">Single-choice poll</p>
+                        <h1 class="question-text">{{ question }}</h1>
 
-                    <form action="{{ url_for('vote') }}" method="post" id="vote-form">
-                        <ul class="answer-list">
-                            {% for answer in answers %}
-                            <li class="answer-item">
-                                <label class="answer-label">
-                                    <input type="radio" name="answer" value="{{ answer }}" required />
-                                    <span class="answer-text">{{ answer }}</span>
-                                </label>
-                            </li>
-                            {% endfor %}
-                        </ul>
+                        <form action="{{ url_for('vote') }}" method="post" id="vote-form" aria-label="Voting form">
+                            <fieldset style="border:none;padding:0;margin:0;">
+                                <legend class="sr-only">Choose your answer</legend>
+                                <ul class="answer-list" role="radiogroup" aria-required="true"
+                                    aria-labelledby="vote-form">
+                                    {% for answer in answers %}
+                                    <li class="answer-item">
+                                        <label class="answer-label">
+                                            <input type="radio" name="answer" value="{{ answer }}" required
+                                                aria-label="{{ answer }}" />
+                                            <span class="answer-text">{{ answer }}</span>
+                                        </label>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </fieldset>
 
-                        <div class="btn-row">
-                            <button type="submit" class="btn btn-primary">Send Answer</button>
-                            <a href="{{ url_for('results') }}" class="btn btn-secondary">Show Results</a>
-                        </div>
-                    </form>
+                            <div class="btn-row">
+                                <button type="submit" class="btn btn-primary" aria-label="Submit your vote">Send
+                                    Answer</button>
+                                <a href="{{ url_for('results') }}" class="btn btn-secondary"
+                                    aria-label="View current results without voting">Show Results</a>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Right column: question-related image -->
+                    <div class="col-right" aria-hidden="true">
+                        <img src="{{ url_for('static', filename='multiple-browser-tabs-open-2418596165-1.png') }}"
+                            alt="Many browser tabs open" class="question-img" width="600" height="400" loading="lazy" />
+                    </div>
+
                 </div>
-
-                <!-- Right column: question-related image -->
-                <div class="col-right">
-                    <img src="{{ url_for('static', filename='multiple-browser-tabs-open-2418596165-1.png') }}"
-                        alt="Many browser tabs open" class="question-img" />
-                </div>
-
             </div>
-        </div>
+        </main>
     </div>
 </body>
 
