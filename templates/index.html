@@ -27,6 +27,9 @@
     <!-- ── Flash messages ── -->
     <div class="container">
         <div aria-live="polite" aria-atomic="true">
+            {% if already_voted %}
+            <div class="alert alert-info" role="alert">You have already voted. Thanks for participating!</div>
+            {% endif %}
             {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
             {% for category, message in messages %}
@@ -47,15 +50,15 @@
                         <h1 class="question-text">{{ question }}</h1>
 
                         <form action="{{ url_for('vote') }}" method="post" id="vote-form" aria-label="Voting form">
-                            <fieldset style="border:none;padding:0;margin:0;">
+                            <fieldset style="border:none;padding:0;margin:0;" {% if already_voted %}disabled{% endif %}>
                                 <legend class="sr-only">Choose your answer</legend>
                                 <ul class="answer-list" role="radiogroup" aria-required="true"
                                     aria-labelledby="vote-form">
                                     {% for answer in answers %}
                                     <li class="answer-item">
                                         <label class="answer-label">
-                                            <input type="radio" name="answer" value="{{ answer }}" required
-                                                aria-label="{{ answer }}" />
+                                            <input type="radio" name="answer" value="{{ answer }}"
+                                                aria-label="{{ answer }}" {% if already_voted %}disabled{% endif %} />
                                             <span class="answer-text">{{ answer }}</span>
                                         </label>
                                     </li>
@@ -64,10 +67,15 @@
                             </fieldset>
 
                             <div class="btn-row">
+                                {% if already_voted %}
+                                <a href="{{ url_for('results') }}" class="btn btn-primary"
+                                    aria-label="View current results">View Results</a>
+                                {% else %}
                                 <button type="submit" class="btn btn-primary" aria-label="Submit your vote">Send
                                     Answer</button>
                                 <a href="{{ url_for('results') }}" class="btn btn-secondary"
                                     aria-label="View current results without voting">Show Results</a>
+                                {% endif %}
                             </div>
                         </form>
                     </div>

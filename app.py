@@ -69,14 +69,13 @@ def _reset_votes() -> dict:
 
 @app.route("/")
 def index():
-    """Show the voting page. Redirect to results if the user already voted."""
-    if session.get("voted"):
-        flash("You have already voted.", "info")
-        return redirect(url_for("results"))
+    """Show the voting page. If the user already voted, show the page in read-only mode."""
+    already_voted = bool(session.get("voted"))
     return render_template(
         "index.html",
         question=config.QUESTION,
         answers=config.ANSWERS,
+        already_voted=already_voted,
     )
 
 
