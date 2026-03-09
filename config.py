@@ -23,3 +23,12 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "changeme-in-production-32chars!!")
 import pathlib
 BASE_DIR = pathlib.Path(__file__).parent
 VOTES_FILE = BASE_DIR / "votes.json"
+
+# ── Webhook Auto-Deploy ───────────────────────────────────────────────────────
+# Secret for authenticating GitHub webhooks
+WEBHOOK_SECRET = os.environ.get("WEBHOOK_SECRET", "")
+
+# PythonAnywhere deployment info for automatic WSGI reload
+PYTHONANYWHERE_USERNAME = os.environ.get("PYTHONANYWHERE_USERNAME", "")
+PYTHONANYWHERE_DOMAIN = os.environ.get("PYTHONANYWHERE_DOMAIN", "") # e.g. "yourname.pythonanywhere.com"
+

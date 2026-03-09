@@ -1,4 +1,8 @@
 import json
+import hmac
+import hashlib
+import os
+import subprocess
 from flask import (
     Flask, render_template, request,
     redirect, url_for, session, flash
@@ -143,6 +147,47 @@ def reset():
 def about():
     """Show the About / O anketě page."""
     return render_template("about.html")
+
+
+@app.route("/update_server", methods=["POST"])
+def update_server():
+    """Webhook endpoint to automatically pull from GitHub and reload PythonAnywhere."""
+    if not config.WEBHOOK_SECRET:
+        return "Webhook secret not configured.", 500
+
+    # Verify GitHub signature
+    signature = request.headers.get("X-Hub-Signature-256")
+    if not signature:
+        return "Missing signature", 403
+
+    mac = hmac.new(config.WEBHOOK_SECRET.encode(), msg=request.data, digestmod=hashlib.sha256)
+    expected_signature = "sha256=" + mac.hexdigest()
+
+    if not hmac.compare_digest(expected_signature, signature):
+        return "Invalid signature", 403
+
+    # On push event, pull code and reload WSGI
+    if request.headers.get("X-GitHub-Event") == "push":
+        try:
+            # Pull new code
+            subprocess.run(["git", "pull", "origin", "main"], check=True, cwd=config.BASE_DIR)
+
+            # Reload PythonAnywhere web app
+            if config.PYTHONANYWHERE_DOMAIN:
+                wsgi_file = f"/var/www/{config.PYTHONANYWHERE_DOMAIN.replace('.', '_')}_wsgi.py"
+            elif config.PYTHONANYWHERE_USERNAME:
+                wsgi_file = f"/var/www/{config.PYTHONANYWHERE_USERNAME}_pythonanywhere_com_wsgi.py"
+            else:
+                wsgi_file = None
+
+            if wsgi_file and os.path.exists(wsgi_file):
+                os.utime(wsgi_file, None)
+
+            return "Updated PythonAnywhere successfully", 200
+        except subprocess.CalledProcessError as e:
+            return f"Git pull failed: {str(e)}", 500
+
+    return "Ignored event", 200
 
 
 # ── Entry point ───────────────────────────────────────────────────────────────
