@@ -1,7 +1,7 @@
 import os
 
 # ── Poll content ──────────────────────────────────────────────────────────────
-QUESTION = "How many browser tabs open is still reasonable? 🌐"
+QUESTION = "How many browser tabs open is still reasonable?"
 
 ANSWERS = [
     "1 – 5   (minimalist)",
