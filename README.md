@@ -23,6 +23,8 @@ A simple single-question polling web application built with **Python + Flask**, 
 | F2 | **Results** | View live vote counts and percentages without voting. |
 | F3 | **Reset** | Admin can reset all votes by supplying a secret token. |
 | – | **Anti-double-vote** | Server-side Flask session prevents the same browser from voting twice. |
+| – | **Security** | Enforces modern security headers (CSP, HSTS, X-Frame-Options) for enhanced protection. |
+| – | **Auto-deploy** | GitHub Webhook endpoint for live deployment triggers to PythonAnywhere. |
 
 ---
 
@@ -56,6 +58,7 @@ questionare/
 | `GET`  | `/results` | Results page with vote counts and reset form. |
 | `POST` | `/reset` | Reset votes if the supplied token matches the server-side token. |
 | `GET`  | `/about` | About page (O anketě) – info about the survey and bug reporting link. |
+| `POST` | `/update_server` | GitHub Webhook endpoint. Verifies signature, pulls code, and reloads WSGI. |
 
 ---
 
@@ -67,6 +70,9 @@ Edit `config.py` or set environment variables:
 |----------|---------|-------------|
 | `RESET_TOKEN` | `secret123` | Token required for resetting votes |
 | `SECRET_KEY` | `changeme-...` | Flask session signing key |
+| `WEBHOOK_SECRET` | *None* | Secret key for verifying GitHub Webhook payloads |
+| `PYTHONANYWHERE_USERNAME`| *None* | Username for auto-deployment reload script |
+| `PYTHONANYWHERE_DOMAIN` | *None* | Domain name (if using custom domain) for auto-deployment |
 
 > **On PythonAnywhere**: Go to *Web → Environment variables* and set `RESET_TOKEN` and `SECRET_KEY` to strong, random values.
 
